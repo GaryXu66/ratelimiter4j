@@ -56,6 +56,7 @@ public class FixedTimeWindowRateLimiter implements RateLimiter {
           if (stopwatch.elapsed(TimeUnit.MILLISECONDS) > TimeUnit.SECONDS.toMillis(1)) {
             currentCount.set(0);
             stopwatch.reset();
+            stopwatch.start();
           }
           updatedCount = currentCount.incrementAndGet();
           return updatedCount <= limit;
